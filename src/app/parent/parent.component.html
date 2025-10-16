@@ -1,0 +1,6 @@
+<div class="main">
+    <h1>Parent</h1>
+    <span style="font-size: 72px">🐱</span>
+    <div>message from child: {{ childMsg }}</div>
+</div>
+<app-child [parentMsg]="message" (clicked)="onChildClicked($event)"></app-child>
