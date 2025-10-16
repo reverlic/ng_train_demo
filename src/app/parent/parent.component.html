@@ -2,5 +2,11 @@
     <h1>Parent</h1>
     <span style="font-size: 72px">🐱</span>
     <div>message from child: {{ childMsg }}</div>
+    <input
+        type="range"
+        min="0"
+        max="100"
+        [(ngModel)]="sliderValue"
+    />
 </div>
-<app-child [parentMsg]="message" (clicked)="onChildClicked($event)"></app-child>
+<app-child [parentMsg]="sliderValue" (clicked)="onChildClicked($event)"></app-child>

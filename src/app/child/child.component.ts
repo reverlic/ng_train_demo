@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './child.component.scss'
 })
 export class ChildComponent {
-  @Input() parentMsg: string | undefined;
+  @Input() parentMsg: any;
   @Output() clicked = new EventEmitter<string>();
   
   
