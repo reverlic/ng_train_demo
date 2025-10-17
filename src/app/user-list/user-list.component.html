@@ -1,0 +1,17 @@
+<h3>User List</h3>
+
+
+<ul>
+    @for(user of users; track user.id){
+        <li>
+            <strong>{{ user.name }}</strong> — {{ user.email }}
+        </li>
+    }
+</ul>
+
+@if(error){
+    {{ error | json }}
+}
+
+<button (click)="load()">load</button>
+<button (click)="loadFail()">load fail</button>
