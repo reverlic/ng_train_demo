@@ -1,0 +1,90 @@
+<label>
+    <input type="checkbox" [checked]="isFormNested" (change)="isFormNested = !isFormNested"/>
+    Use Nested Form
+</label>
+
+@if(!isFormNested){
+<form [formGroup]="userForm">
+    <div>
+        <label>
+            Name:
+            <input formControlName="name" />
+            @if (userForm.get('name')?.hasError('required') && userForm.get('name')?.dirty) {
+                <div class="error">
+                  Name is required.
+                </div>
+            }
+        </label>
+    </div>
+    <div>
+        <label>
+            Email:
+            <input formControlName="email" />
+            @if (userForm.get('email')?.hasError('required') && userForm.get('email')?.dirty) {
+                <div class="error">
+                  email is required.
+                </div>
+            }
+            @if (userForm.get('email')?.hasError('email') && userForm.get('email')?.dirty) {
+                <div class="error">
+                  email incorrect format.
+                </div>
+            }
+        </label>
+    </div>
+</form>
+<button (click)="onSubmit()" [disabled]="userForm.invalid">Submit</button>
+}
+
+@if(isFormNested){
+    <form [formGroup]="nestedForm">
+        <div>
+            <label>
+                Name:
+                <input formControlName="name" />
+                @if (nestedForm.get('name')?.hasError('required') && nestedForm.get('name')?.dirty) {
+                    <div class="error">
+                      Name is required.
+                    </div>
+                }
+            </label>
+        </div>
+        <div>
+            <label>
+                Email:
+                <input formControlName="email" />
+                @if (nestedForm.get('email')?.hasError('required') && nestedForm.get('email')?.dirty) {
+                    <div class="error">
+                      email is required.
+                    </div>
+                }
+                @if (nestedForm.get('email')?.hasError('email') && nestedForm.get('email')?.dirty) {
+                    <div class="error">
+                      email incorrect format.
+                    </div>
+                }
+            </label>
+        </div>
+        <fieldset>
+            <form [formGroup]="addressForm">
+                <div>
+                    <label>
+                        Country:
+                        <input formControlName="country" />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Province:
+                        <input formControlName="province" />
+                    </label>
+                </div>
+            </form>
+        </fieldset>
+    </form>
+    <button (click)="onSubmit()">Submit</button>
+}
+
+<h3>Form Value Preview:</h3>
+<pre>{{ submitValue | json }}</pre>
+
